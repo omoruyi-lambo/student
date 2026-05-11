@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deskon Academy — Student Portfolio Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232143FF'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='18' font-weight='bold' font-family='Inter'>D</text></svg>">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">D</div>
+        Deskon<span>Academy</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="students.html">Directory</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg-video">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&q=80">
+        <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-5020/1080p.mp4" type="video/mp4">
+      </video>
+      <div class="hero-bg-video-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-star" style="margin-right:0.35rem;font-size:0.7rem"></i> Deskon Academy 2026</div>
+      <h1>
+        Discover<br>
+        <span class="gradient-text">Nigeria's Next<br>Tech Talent</span>
+      </h1>
+      <p>Explore student portfolios, projects, and achievements from Deskon Academy's brightest minds. Find your next hire, collaborator, or inspiration.</p>
+      <div class="hero-buttons">
+        <a href="students.html" class="btn btn-primary">Browse Students &rarr;</a>
+        <a href="students.html" class="btn btn-outline">View Directory</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3 data-count="200">0</h3>
+          <p>Students Trained</p>
+        </div>
+        <div class="stat-item">
+          <h3 data-count="8">0</h3>
+          <p>Tech Tracks</p>
+        </div>
+        <div class="stat-item">
+          <h3 data-count="50">0</h3>
+          <p>Industry Partners</p>
+        </div>
+        <div class="stat-item">
+          <h3 data-count="95">0</h3>
+          <p>Employment Rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Featured <span>Students</span></h2>
+        <p>Meet some of our top talents across different tracks</p>
+      </div>
+      <div class="students-grid stagger-children" id="featuredGrid">
+      </div>
+      <div style="text-align:center;margin-top:2.5rem" class="fade-in">
+        <a href="students.html" class="btn btn-primary">View All Students &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-in">Ready to Hire <span style="background:var(--primary-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Top Talent?</span></h2>
+      <p class="fade-in">Connect with skilled graduates ready to contribute to your team from day one.</p>
+      <a href="students.html" class="btn btn-primary fade-in">Explore Student Portfolios &rarr;</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Deskon Academy. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="students.html">Students</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="students.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
