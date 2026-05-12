@@ -1,3 +1,12 @@
+/* Loading screen */
+window.addEventListener('load', function() {
+  var loader = document.getElementById('loader');
+  if (loader) {
+    loader.classList.add('loader-hidden');
+    setTimeout(function() { loader.style.display = 'none'; }, 800);
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   const nav = document.getElementById('nav');
   const navToggle = document.getElementById('navToggle');
@@ -32,8 +41,20 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   observeFadeElements();
 
+  var spotlightGrid = document.getElementById('spotlightGrid');
+  if (spotlightGrid) {
+    spotlightGrid.innerHTML = '';
+    students.forEach(function(student) {
+      var card = createSpotlightCard(student);
+      spotlightGrid.appendChild(card);
+    });
+    setTimeout(function() {
+      spotlightGrid.classList.add('visible');
+    }, 200);
+  }
+
   var featuredGrid = document.getElementById('featuredGrid');
-  if (featuredGrid) {
+  if (featuredGrid && !spotlightGrid) {
     var featured = students.slice(0, 4);
     featured.forEach(function(student) {
       var card = createStudentCard(student);
@@ -42,30 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
       featuredGrid.classList.add('visible');
     }, 200);
-  }
-
-  /* Hero parallax on mousemove (desktop only) */
-  var heroRight = document.querySelector('.hero-right');
-  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (heroRight && !isTouch) {
-    document.querySelector('.hero').addEventListener('mousemove', function(e) {
-      var cards = heroRight.querySelectorAll('.float-card, .float-card-skills');
-      var rect = heroRight.getBoundingClientRect();
-      var centerX = rect.left + rect.width / 2;
-      var centerY = rect.top + rect.height / 2;
-      var mouseX = (e.clientX - centerX) / 30;
-      var mouseY = (e.clientY - centerY) / 30;
-      cards.forEach(function(card, i) {
-        var factor = (i + 1) * 0.3;
-        card.style.transform = 'translate(' + (mouseX * factor) + 'px, ' + (mouseY * factor) + 'px)';
-      });
-    });
-    document.querySelector('.hero').addEventListener('mouseleave', function() {
-      var cards = heroRight.querySelectorAll('.float-card, .float-card-skills');
-      cards.forEach(function(card) {
-        card.style.transform = '';
-      });
-    });
   }
 
   function animateStats() {
@@ -100,6 +97,31 @@ document.addEventListener('DOMContentLoaded', function() {
     statsObserver.observe(statsSection);
   }
 
+  function createSpotlightCard(student) {
+    var card = document.createElement('a');
+    card.href = 'student.html?id=' + student.id;
+    card.className = 'spotlight-card';
+    card.style.display = 'block';
+    card.style.textDecoration = 'none';
+    card.style.color = 'inherit';
+
+    var projectImg = student.projects && student.projects.length > 0
+      ? student.projects[0].image
+      : student.image;
+
+    card.innerHTML =
+      '<div class="spotlight-card-img-wrap">' +
+      '<img src="' + projectImg + '" alt="' + student.name + '" class="spotlight-card-img" loading="lazy">' +
+      '</div>' +
+      '<div class="spotlight-card-body">' +
+      '<h3>' + student.name + '</h3>' +
+      '<div class="spotlight-track">' + student.track + '</div>' +
+      '<p>' + student.bio + '</p>' +
+      '</div>';
+
+    return card;
+  }
+
   function createStudentCard(student) {
     var card = document.createElement('a');
     card.href = 'student.html?id=' + student.id;
@@ -119,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '<div class="cohort-label"><i class="far fa-calendar-alt" style="margin-right:0.3rem;font-size:0.7rem"></i>' + student.cohort + ' <span style="margin-left:0.5rem"><i class="far fa-folder-open" style="margin-right:0.2rem;font-size:0.7rem"></i>' + student.projects.length + ' projects</span></div>' +
       '<p class="bio-text">' + student.bio + '</p>' +
       '<div class="skills-preview">' + skillChips + '</div>' +
-      '<span class="btn btn-primary btn-sm">View Portfolio <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></span>';
+      '<span class="view-cta">View Portfolio <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></span>';
 
     return card;
   }
@@ -181,10 +203,10 @@ document.addEventListener('DOMContentLoaded', function() {
       currentSearch = searchInput ? searchInput.value : '';
       renderStudents();
     });
+  }
 
-    if (studentsGrid) {
-      renderStudents();
-    }
+  if (studentsGrid) {
+    renderStudents();
   }
 
   var profileContent = document.getElementById('profileContent');
@@ -275,7 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
         '</div>';
     }).join('');
 
+    console.log('Rendering projects for:', s.name, 'with', s.projects.length, 'projects');
     var projectsHTML = s.projects.map(function(proj) {
+      console.log('Processing project:', proj.title, 'liveLink:', proj.liveLink);
       return '<div class="project-card fade-in-up">' +
         '<img src="' + proj.image + '" alt="' + proj.title + '" class="project-card-img" loading="lazy">' +
         '<div class="project-card-body">' +
@@ -283,10 +307,11 @@ document.addEventListener('DOMContentLoaded', function() {
         '<p>' + proj.description + '</p>' +
         '<div class="project-tech">' + proj.tech.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>' +
         '<div class="project-links">' +
-        (proj.liveLink !== '#' ? '<a href="' + proj.liveLink + '" class="live-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a>' : '') +
+        '<a href="' + proj.liveLink + '" class="btn btn-primary" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: #2b8cff; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; justify-content: center; width: 100%; margin-top: 0.5rem;">View Project <i class="fas fa-arrow-right"></i></a>' +
         (proj.githubLink !== '#' ? '<a href="' + proj.githubLink + '" class="github-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>' : '') +
         '</div></div></div>';
     }).join('');
+    console.log('Generated projectsHTML:', projectsHTML);
 
     var certsHTML = s.certificates.map(function(cert) {
       return '<div class="cert-card fade-in-up">' +

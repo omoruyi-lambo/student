@@ -6,9 +6,21 @@
   <title>Students — Deskon Academy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2338bdf8'/><text x='16' y='23' text-anchor='middle' fill='white' font-size='20' font-weight='bold' font-family='Arial'>D</text></svg>">
+  <link rel="alternate icon" href="logo.png" type="image/png">
 </head>
 <body>
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-glow"></div>
+      <div class="loader-ring"></div>
+      <div class="loader-particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <img src="logo.png" alt="Deskon Academy" class="loader-logo">
+    </div>
+  </div>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
@@ -18,13 +30,11 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="students.html" class="active">Students</a></li>
-        <li><a href="students.html" class="active">Directory</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="page-header">
-    <div class="page-header-bg"></div>
     <div class="container">
       <h1 class="fade-in">Student Directory</h1>
       <p class="fade-in">Discover talented students across all tracks</p>
@@ -37,16 +47,6 @@
         <div class="search-box">
           <span class="search-icon"><i class="fas fa-search"></i></span>
           <input type="text" id="searchInput" placeholder="Search students by name, track, or skill..." autocomplete="off">
-        </div>
-        <div class="filter-tabs" id="filterTabs">
-          <button class="filter-tab active" data-track="all">All</button>
-          <button class="filter-tab" data-track="Frontend Engineering">Frontend</button>
-          <button class="filter-tab" data-track="Backend Engineering">Backend</button>
-          <button class="filter-tab" data-track="Full Stack Engineering">Full Stack</button>
-          <button class="filter-tab" data-track="UI/UX Design">UI/UX</button>
-          <button class="filter-tab" data-track="Mobile Development">Mobile</button>
-          <button class="filter-tab" data-track="Data Science">Data Science</button>
-          <button class="filter-tab" data-track="DevOps Engineering">DevOps</button>
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
     </div>
   </footer>
 
-  <script src="students.js"></script>
-  <script src="script.js"></script>
+  <script src="students.js?v=2"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>

@@ -25,8 +25,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
         tech: ["React", "TypeScript", "Tailwind CSS", "Chart.js"],
         videoId: "dQw4w9WgXcQ",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Task Management App",
@@ -34,8 +34,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
         tech: ["React", "Redux", "Node.js", "MongoDB"],
         videoId: "jNQXAC9IVRw",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -89,8 +89,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
         tech: ["Node.js", "Express", "PostgreSQL", "Redis", "Stripe"],
         videoId: "9bZkp7q19f0",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Real-Time Chat Service",
@@ -98,8 +98,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=600&h=400&fit=crop",
         tech: ["Python", "FastAPI", "WebSocket", "Redis", "RabbitMQ"],
         videoId: "dQw4w9WgXcQ",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -153,8 +153,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=400&fit=crop",
         tech: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "AWS"],
         videoId: "jNQXAC9IVRw",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Food Delivery Platform",
@@ -162,8 +162,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop",
         tech: ["React", "Node.js", "MongoDB", "Socket.io", "Stripe"],
         videoId: "9bZkp7q19f0",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Analytics Dashboard",
@@ -171,8 +171,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
         tech: ["React", "D3.js", "Python", "FastAPI", "Redis"],
         videoId: "dQw4w9WgXcQ",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -226,8 +226,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=600&h=400&fit=crop",
         tech: ["Figma", "Principle", "Illustrator"],
         videoId: "jNQXAC9IVRw",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "E-Commerce Redesign",
@@ -235,8 +235,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1556742111-a301076daf9f?w=600&h=400&fit=crop",
         tech: ["Figma", "Maze", "After Effects"],
         videoId: "9bZkp7q19f0",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -288,8 +288,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
         tech: ["Flutter", "Dart", "Firebase", "Health API"],
         videoId: "dQw4w9WgXcQ",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Social Commerce App",
@@ -297,8 +297,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=400&fit=crop",
         tech: ["React Native", "Node.js", "MongoDB", "Firebase"],
         videoId: "jNQXAC9IVRw",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -350,8 +350,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
         tech: ["Python", "scikit-learn", "Pandas", "Flask", "Docker"],
         videoId: "9bZkp7q19f0",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "NLP Sentiment Analysis Tool",
@@ -359,8 +359,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&h=400&fit=crop",
         tech: ["Python", "BERT", "Transformers", "FastAPI", "MongoDB"],
         videoId: "dQw4w9WgXcQ",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -416,8 +416,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
         tech: ["AWS", "Terraform", "Ansible", "Docker", "GitHub Actions"],
         videoId: "jNQXAC9IVRw",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Microservices Deployment Pipeline",
@@ -425,8 +425,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&h=400&fit=crop",
         tech: ["Kubernetes", "Docker", "Jenkins", "Helm", "Prometheus"],
         videoId: "9bZkp7q19f0",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
@@ -480,8 +480,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=400&fit=crop",
         tech: ["Vue.js", "Sass", "JavaScript", "ARIA"],
         videoId: "dQw4w9WgXcQ",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       },
       {
         title: "Portfolio Builder Platform",
@@ -489,8 +489,8 @@ const students = [
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
         tech: ["Vue.js", "SCSS", "Node.js", "MongoDB"],
         videoId: "jNQXAC9IVRw",
-        liveLink: "#",
-        githubLink: "#"
+        liveLink: "https://example.com/demo/e-commerce-dashboard",
+        githubLink: "https://github.com/example/e-commerce-dashboard"
       }
     ],
     certificates: [
