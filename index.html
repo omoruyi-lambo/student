@@ -6,14 +6,13 @@
   <title>Deskon Academy — Student Portfolio Platform</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232143FF'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='18' font-weight='bold' font-family='Inter'>D</text></svg>">
+  <link rel="icon" href="logo.png" type="image/png">
 </head>
 <body>
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon">D</div>
-        Deskon<span>Academy</span>
+        <img src="logo.png" alt="Deskon Academy" class="logo-img">
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
       <ul class="nav-links" id="navLinks">
@@ -25,27 +24,116 @@
   </nav>
 
   <section class="hero">
-    <div class="hero-bg-video">
-      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1600&q=80">
-        <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-5020/1080p.mp4" type="video/mp4">
-      </video>
-      <div class="hero-bg-video-overlay"></div>
+    <div class="hero-bg">
+      <div class="hero-bg-img"></div>
+      <div class="hero-blob"></div>
+      <div class="hero-blob"></div>
+      <div class="hero-blob"></div>
+      <div class="hero-mesh"></div>
     </div>
-    <div class="hero-content">
-      <div class="hero-badge"><i class="fas fa-star" style="margin-right:0.35rem;font-size:0.7rem"></i> Deskon Academy 2026</div>
-      <h1>
-        Discover<br>
-        <span class="gradient-text">Nigeria's Next<br>Tech Talent</span>
-      </h1>
-      <p>Explore student portfolios, projects, and achievements from Deskon Academy's brightest minds. Find your next hire, collaborator, or inspiration.</p>
-      <div class="hero-buttons">
-        <a href="students.html" class="btn btn-primary">Browse Students &rarr;</a>
-        <a href="students.html" class="btn btn-outline">View Directory</a>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge"><i class="fas fa-sparkles"></i> Deskon Academy 2026</div>
+        <h1>
+          Discover<br>
+          <span class="gradient-text">Nigeria's Next<br>Tech Talent</span>
+        </h1>
+        <p>Explore student portfolios, projects, and achievements from Deskon Academy's brightest minds. Find your next hire, collaborator, or inspiration.</p>
+        <div class="hero-buttons">
+          <a href="students.html" class="btn btn-primary">Browse Students <i class="fas fa-arrow-right"></i></a>
+          <a href="students.html" class="btn btn-outline">View Directory</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <h4>200+</h4>
+            <p>Students</p>
+          </div>
+          <div class="hero-stat">
+            <h4>8</h4>
+            <p>Tracks</p>
+          </div>
+          <div class="hero-stat">
+            <h4>95%</h4>
+            <p>Employed</p>
+          </div>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-avatars">
+            <span style="background:linear-gradient(135deg,#1E40AF,#2563EB)">I</span>
+            <span style="background:linear-gradient(135deg,#2563EB,#3B82F6)">S</span>
+            <span style="background:linear-gradient(135deg,#1D4ED8,#2563EB)">M</span>
+            <span style="background:linear-gradient(135deg,#1E40AF,#1D4ED8)">D</span>
+            <span style="background:linear-gradient(135deg,#2563EB,#3B82F6);margin-right:0">+4</span>
+          </div>
+          <p>Trusted by <strong>50+</strong> industry partners</p>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-image-wrap">
+          <div class="hero-img-glass">
+            <span></span><span></span><span></span><span>deskon.academy</span>
+          </div>
+          <div class="hero-image-shine"></div>
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Deskon Academy students" loading="lazy">
+        </div>
+        <div class="float-card float-card-student">
+          <div class="fcs-header">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="" class="fcs-img">
+            <div>
+              <div class="fcs-name">Isaiah Adeyemi</div>
+              <div class="fcs-role">Frontend Developer</div>
+            </div>
+          </div>
+          <div class="fcs-tags">
+            <span>React</span>
+            <span>TypeScript</span>
+            <span>UI/UX</span>
+          </div>
+        </div>
+        <div class="float-card float-card-project">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" alt="" class="fcp-img">
+          <div class="fcp-title">E-Commerce Dashboard</div>
+          <div class="fcp-desc">Full-featured admin dashboard</div>
+        </div>
+        <div class="float-card float-card-analytics">
+          <div class="fca-header">
+            <span>Progress</span>
+            <span><i class="fas fa-arrow-up" style="color:#10B981"></i> +12%</span>
+          </div>
+          <div class="fca-number">92%</div>
+          <div class="fca-bar"><div class="fca-bar-fill"></div></div>
+        </div>
+        <div class="float-card float-card-cert">
+          <div class="fcc-icon"><i class="fas fa-certificate" style="color:var(--primary)"></i></div>
+          <div class="fcc-title">Frontend Certified</div>
+          <div class="fcc-date">Issued Mar 2024</div>
+        </div>
+        <div class="float-card-skills">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>React</span>
+          <span>Node</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="section-bg section-bg-featured"></div>
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Featured Students</h2>
+        <p>Meet some of our top talents across different tracks</p>
+      </div>
+      <div class="students-grid stagger-children" id="featuredGrid"></div>
+      <div style="text-align:center;margin-top:3rem" class="fade-in">
+        <a href="students.html" class="btn btn-primary">View All Students <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
 
   <section class="stats">
+    <div class="section-bg section-bg-stats"></div>
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item">
@@ -68,25 +156,12 @@
     </div>
   </section>
 
-  <section class="section" id="featured">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Featured <span>Students</span></h2>
-        <p>Meet some of our top talents across different tracks</p>
-      </div>
-      <div class="students-grid stagger-children" id="featuredGrid">
-      </div>
-      <div style="text-align:center;margin-top:2.5rem" class="fade-in">
-        <a href="students.html" class="btn btn-primary">View All Students &rarr;</a>
-      </div>
-    </div>
-  </section>
-
   <section class="cta-section">
+    <div class="section-bg section-bg-cta"></div>
     <div class="container">
-      <h2 class="fade-in">Ready to Hire <span style="background:var(--primary-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Top Talent?</span></h2>
+      <h2 class="fade-in">Ready to Hire <span>Top Talent?</span></h2>
       <p class="fade-in">Connect with skilled graduates ready to contribute to your team from day one.</p>
-      <a href="students.html" class="btn btn-primary fade-in">Explore Student Portfolios &rarr;</a>
+      <a href="students.html" class="btn btn-primary fade-in">Explore Student Portfolios <i class="fas fa-arrow-right"></i></a>
     </div>
   </section>
 

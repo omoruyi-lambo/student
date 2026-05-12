@@ -44,13 +44,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 200);
   }
 
+  /* Hero parallax on mousemove (desktop only) */
+  var heroRight = document.querySelector('.hero-right');
+  var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (heroRight && !isTouch) {
+    document.querySelector('.hero').addEventListener('mousemove', function(e) {
+      var cards = heroRight.querySelectorAll('.float-card, .float-card-skills');
+      var rect = heroRight.getBoundingClientRect();
+      var centerX = rect.left + rect.width / 2;
+      var centerY = rect.top + rect.height / 2;
+      var mouseX = (e.clientX - centerX) / 30;
+      var mouseY = (e.clientY - centerY) / 30;
+      cards.forEach(function(card, i) {
+        var factor = (i + 1) * 0.3;
+        card.style.transform = 'translate(' + (mouseX * factor) + 'px, ' + (mouseY * factor) + 'px)';
+      });
+    });
+    document.querySelector('.hero').addEventListener('mouseleave', function() {
+      var cards = heroRight.querySelectorAll('.float-card, .float-card-skills');
+      cards.forEach(function(card) {
+        card.style.transform = '';
+      });
+    });
+  }
+
   function animateStats() {
     var statItems = document.querySelectorAll('.stat-item h3');
     statItems.forEach(function(item) {
       var target = parseInt(item.dataset.count);
       if (!target) return;
       var current = 0;
-      var increment = Math.ceil(target / 60);
+      var duration = 40;
+      var increment = Math.ceil(target / duration);
       var timer = setInterval(function() {
         current += increment;
         if (current >= target) {
@@ -58,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
           clearInterval(timer);
         }
         item.textContent = (item.dataset.count === '95') ? current + '%' : current;
-      }, 25);
+      }, 30);
     });
   }
 
@@ -71,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
           statsObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.4 });
     statsObserver.observe(statsSection);
   }
 
@@ -91,10 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
       '<img src="' + student.image + '" alt="' + student.name + '" class="student-card-img" loading="lazy">' +
       '<h3>' + student.name + '</h3>' +
       '<div class="track-badge">' + student.track + '</div>' +
-      '<div class="cohort-label">' + student.cohort + '</div>' +
+      '<div class="cohort-label"><i class="far fa-calendar-alt" style="margin-right:0.3rem;font-size:0.7rem"></i>' + student.cohort + ' <span style="margin-left:0.5rem"><i class="far fa-folder-open" style="margin-right:0.2rem;font-size:0.7rem"></i>' + student.projects.length + ' projects</span></div>' +
       '<p class="bio-text">' + student.bio + '</p>' +
       '<div class="skills-preview">' + skillChips + '</div>' +
-      '<span class="btn btn-primary btn-sm">View Portfolio &rarr;</span>';
+      '<span class="btn btn-primary btn-sm">View Portfolio <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></span>';
 
     return card;
   }
@@ -189,56 +214,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  /* ===== Video Modal ===== */
-  var videoModalHTML =
-    '<div class="video-modal" id="videoModal">' +
-    '<button class="video-modal-close" id="videoModalClose"><i class="fas fa-times"></i></button>' +
-    '<div class="video-modal-inner">' +
-    '<iframe id="videoModalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>' +
-    '</div></div>';
-
-  if (!document.getElementById('videoModal')) {
-    var modalDiv = document.createElement('div');
-    modalDiv.innerHTML = videoModalHTML;
-    document.body.appendChild(modalDiv.firstElementChild);
-  }
-
-  var videoModal = document.getElementById('videoModal');
-  var videoIframe = document.getElementById('videoModalIframe');
-
-  if (videoModal) {
-    document.addEventListener('click', function(e) {
-      var playBtn = e.target.closest('.play-btn');
-      if (playBtn && playBtn.dataset.videoId) {
-        videoIframe.src = 'https://www.youtube.com/embed/' + playBtn.dataset.videoId + '?autoplay=1&rel=0';
-        videoModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-
-    document.getElementById('videoModalClose').addEventListener('click', function() {
-      closeVideoModal();
-    });
-
-    videoModal.addEventListener('click', function(e) {
-      if (e.target === videoModal) {
-        closeVideoModal();
-      }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && videoModal.classList.contains('open')) {
-        closeVideoModal();
-      }
-    });
-  }
-
-  function closeVideoModal() {
-    videoModal.classList.remove('open');
-    videoIframe.src = '';
-    document.body.style.overflow = '';
-  }
-
   function setupProfileNav() {
     var pn = document.getElementById('profileNav');
     if (!pn) return;
@@ -301,14 +276,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }).join('');
 
     var projectsHTML = s.projects.map(function(proj) {
-      var videoBtn = proj.videoId
-        ? '<div class="play-btn" data-video-id="' + proj.videoId + '"><div class="play-btn-circle"><i class="fas fa-play"></i></div></div>'
-        : '';
       return '<div class="project-card fade-in-up">' +
-        '<div class="project-card-img-wrap">' +
         '<img src="' + proj.image + '" alt="' + proj.title + '" class="project-card-img" loading="lazy">' +
-        videoBtn +
-        '</div>' +
         '<div class="project-card-body">' +
         '<h3>' + proj.title + '</h3>' +
         '<p>' + proj.description + '</p>' +
