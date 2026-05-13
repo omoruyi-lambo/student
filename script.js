@@ -98,12 +98,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function createSpotlightCard(student) {
-    var card = document.createElement('a');
-    card.href = 'student.html?id=' + student.id;
+    var card = document.createElement('div');
     card.className = 'spotlight-card';
     card.style.display = 'block';
     card.style.textDecoration = 'none';
     card.style.color = 'inherit';
+    card.style.cursor = 'pointer';
+    card.onclick = function() { window.location.href = 'student.html?id=' + student.id; };
 
     var projectImg = student.projects && student.projects.length > 0
       ? student.projects[0].image
@@ -123,12 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function createStudentCard(student) {
-    var card = document.createElement('a');
-    card.href = 'student.html?id=' + student.id;
+    var card = document.createElement('div');
     card.className = 'student-card';
     card.style.display = 'block';
     card.style.textDecoration = 'none';
     card.style.color = 'inherit';
+    card.style.cursor = 'pointer';
+    card.onclick = function() { window.location.href = 'student.html?id=' + student.id; };
 
     var skillChips = student.skills.slice(0, 4).map(function(s) {
       return '<span>' + s.name + '</span>';
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '<div class="cohort-label"><i class="far fa-calendar-alt" style="margin-right:0.3rem;font-size:0.7rem"></i>' + student.cohort + ' <span style="margin-left:0.5rem"><i class="far fa-folder-open" style="margin-right:0.2rem;font-size:0.7rem"></i>' + student.projects.length + ' projects</span></div>' +
       '<p class="bio-text">' + student.bio + '</p>' +
       '<div class="skills-preview">' + skillChips + '</div>' +
-      '<span class="view-cta">View Portfolio <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></span>';
+      '<span class="btn btn-primary btn-sm view-cta">View Portfolio <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></span>';
 
     return card;
   }
@@ -307,9 +309,11 @@ document.addEventListener('DOMContentLoaded', function() {
         '<p>' + proj.description + '</p>' +
         '<div class="project-tech">' + proj.tech.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</div>' +
         '<div class="project-links">' +
-        '<a href="' + proj.liveLink + '" class="btn btn-primary" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; background: #2b8cff; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; justify-content: center; width: 100%; margin-top: 0.5rem;">View Project <i class="fas fa-arrow-right"></i></a>' +
-        (proj.githubLink !== '#' ? '<a href="' + proj.githubLink + '" class="github-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>' : '') +
-        '</div></div></div>';
+        '<a href="' + proj.liveLink + '" class="btn btn-primary project-view-btn" target="_blank" rel="noopener">View Project <i class="fas fa-arrow-right"></i></a>' +
+        (proj.githubLink && proj.githubLink !== '#' ? '<a href="' + proj.githubLink + '" class="github-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>' : '') +
+        '</div>' +
+        '</div>' +
+        '</div>';
     }).join('');
     console.log('Generated projectsHTML:', projectsHTML);
 
