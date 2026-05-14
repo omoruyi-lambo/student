@@ -8,6 +8,8 @@ window.addEventListener('load', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  var HOME_SPOTLIGHT_LIMIT = 3;
+  var STUDENT_DIRECTORY_LIMIT = 6;
   const nav = document.getElementById('nav');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var spotlightGrid = document.getElementById('spotlightGrid');
   if (spotlightGrid) {
     spotlightGrid.innerHTML = '';
-    students.forEach(function(student) {
+    students.slice(0, HOME_SPOTLIGHT_LIMIT).forEach(function(student) {
       var card = createSpotlightCard(student);
       spotlightGrid.appendChild(card);
     });
@@ -62,6 +64,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     setTimeout(function() {
       featuredGrid.classList.add('visible');
+    }, 200);
+  }
+
+  var videoGrid = document.getElementById('videoGrid');
+  if (videoGrid) {
+    var projectVideos = getLocalShowcaseVideos();
+    videoGrid.innerHTML = '';
+    projectVideos.forEach(function(video) {
+      videoGrid.appendChild(createVideoCard(video));
+    });
+    setupVideoPreviewLimits(videoGrid);
+    setTimeout(function() {
+      videoGrid.classList.add('visible');
     }, 200);
   }
 
@@ -118,7 +133,15 @@ document.addEventListener('DOMContentLoaded', function() {
       '<h3>' + student.name + '</h3>' +
       '<div class="spotlight-track">' + student.track + '</div>' +
       '<p>' + student.bio + '</p>' +
+      '<a href="student.html?id=' + student.id + '" class="btn btn-primary btn-sm spotlight-view-btn">View Profile <i class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>' +
       '</div>';
+
+    var spotlightViewBtn = card.querySelector('.spotlight-view-btn');
+    if (spotlightViewBtn) {
+      spotlightViewBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
 
     return card;
   }
@@ -148,6 +171,194 @@ document.addEventListener('DOMContentLoaded', function() {
     return card;
   }
 
+  function getLocalShowcaseVideos() {
+    return [
+      {
+        file: 'Copa Diner \u2014 Premier Catering & Events, Benin City.mp4',
+        title: 'Copa Diner',
+        subtitle: 'Premier Catering & Events, Benin City',
+        description: 'A polished hospitality clip with a premium event and dining feel.',
+        tags: ['Hospitality', 'Events', 'Benin City']
+      },
+      {
+        file: 'CutAbove Barbers Shop _ Benin City GRA.mp4',
+        title: 'CutAbove Barbers Shop',
+        subtitle: 'Benin City GRA',
+        description: 'A bold grooming brand video focused on detail, texture, and atmosphere.',
+        tags: ['Barbershop', 'Lifestyle', 'Benin City']
+      },
+      {
+        file: 'Dominica\'s Treats _ Benin City\'s Finest Home Restaurant.mp4',
+        title: 'Dominica\'s Treats',
+        subtitle: 'Benin City\'s Finest Home Restaurant',
+        description: 'A warm food-story clip built around comfort, flavor, and local character.',
+        tags: ['Food', 'Home Restaurant', 'Benin City']
+      },
+      {
+        file: 'Ember Lane Kitchen - Urban Grill - Lagos.mp4',
+        title: 'Ember Lane Kitchen',
+        subtitle: 'Urban Grill, Lagos',
+        description: 'A stylish restaurant showcase with an urban grill mood and modern pacing.',
+        tags: ['Restaurant', 'Urban Grill', 'Lagos']
+      },
+      {
+        file: 'Jollof Central _ Authentic Party Jollof Rice - Benin City.mp4',
+        title: 'Jollof Central',
+        subtitle: 'Authentic Party Jollof Rice, Benin City',
+        description: 'A vibrant food promo centered on party energy, color, and signature taste.',
+        tags: ['Jollof', 'Catering', 'Benin City']
+      },
+      {
+        file: 'Kev Restaurant & Bar - Restaurant & Bar - Benin City.mp4',
+        title: 'Kev Restaurant & Bar',
+        subtitle: 'Restaurant & Bar, Benin City',
+        description: 'A nightlife and dining feature with a relaxed premium venue presentation.',
+        tags: ['Restaurant', 'Bar', 'Benin City']
+      }
+    ];
+  }
+
+  function createVideoCard(video) {
+    var card = document.createElement('article');
+    card.className = 'video-card fade-in-up';
+    var videoUrl = encodeURI(video.file);
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'Open full screen video for ' + video.title);
+    card.dataset.videoUrl = videoUrl;
+    card.style.cursor = 'pointer';
+
+    card.innerHTML =
+      '<div class="video-frame-wrap">' +
+      '<video class="video-frame showcase-video" autoplay muted playsinline preload="metadata" data-preview-duration="40">' +
+      '<source src="' + videoUrl + '" type="video/mp4">' +
+      'Your browser does not support the video tag.' +
+      '</video>' +
+      '</div>';
+
+    return card;
+  }
+
+  function setupVideoPreviewLimits(root) {
+    var videos = root.querySelectorAll('.showcase-video');
+    var hoverAudio = new Audio(encodeURI('alexander-nakarada-superepic(chosic.com).mp3'));
+    hoverAudio.preload = 'auto';
+    hoverAudio.loop = true;
+    hoverAudio.volume = 1;
+    var lockedAudioCard = null;
+    var lockedVideo = null;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var video = entry.target;
+        if (entry.isIntersecting) {
+          video.play().catch(function() {});
+        } else {
+          video.pause();
+          video.closest('.video-card').classList.remove('video-audible');
+          if (lockedAudioCard !== video.closest('.video-card')) {
+            hoverAudio.pause();
+            hoverAudio.currentTime = 0;
+          }
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.addEventListener('fullscreenchange', function() {
+      if (!document.fullscreenElement && lockedAudioCard) {
+        hoverAudio.pause();
+        hoverAudio.currentTime = 0;
+        lockedAudioCard.classList.remove('video-audible');
+        if (lockedVideo) {
+          lockedVideo.controls = false;
+        }
+        lockedAudioCard = null;
+        lockedVideo = null;
+      }
+    });
+
+    videos.forEach(function(video) {
+      var maxDuration = parseFloat(video.dataset.previewDuration || '40');
+      var card = video.closest('.video-card');
+      video.defaultMuted = true;
+      video.muted = true;
+      video.volume = 0;
+
+      function muteAllExcept(activeVideo) {
+        videos.forEach(function(otherVideo) {
+          if (otherVideo !== activeVideo) {
+            otherVideo.closest('.video-card').classList.remove('video-audible');
+          }
+        });
+      }
+
+      function enableHoverSound() {
+        muteAllExcept(video);
+        video.play().catch(function() {});
+        hoverAudio.currentTime = 0;
+        hoverAudio.play().catch(function() {});
+        card.classList.add('video-audible');
+      }
+
+      function disableHoverSound() {
+        if (lockedAudioCard === card) return;
+        hoverAudio.pause();
+        hoverAudio.currentTime = 0;
+        card.classList.remove('video-audible');
+      }
+
+      function openFullVideoFullscreen() {
+        lockedAudioCard = card;
+        lockedVideo = video;
+        video.controls = true;
+        enableHoverSound();
+        video.play().catch(function() {});
+        if (card.requestFullscreen) {
+          card.requestFullscreen().catch(function() {
+            video.controls = false;
+            lockedVideo = null;
+            lockedAudioCard = null;
+            window.location.href = card.dataset.videoUrl;
+          });
+        } else {
+          video.controls = false;
+          lockedVideo = null;
+          lockedAudioCard = null;
+          window.location.href = card.dataset.videoUrl;
+        }
+      }
+
+      video.addEventListener('play', function() {
+        if (video.currentTime >= maxDuration) {
+          video.currentTime = 0;
+        }
+      });
+      video.addEventListener('timeupdate', function() {
+        if (video.currentTime >= maxDuration) {
+          video.currentTime = 0;
+          video.play().catch(function() {});
+        }
+      });
+      video.addEventListener('seeking', function() {
+        if (video.currentTime > maxDuration) {
+          video.currentTime = maxDuration;
+        }
+      });
+      card.addEventListener('mouseenter', enableHoverSound);
+      card.addEventListener('mouseleave', disableHoverSound);
+      card.addEventListener('focusin', enableHoverSound);
+      card.addEventListener('focusout', disableHoverSound);
+      card.addEventListener('click', openFullVideoFullscreen);
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openFullVideoFullscreen();
+        }
+      });
+      observer.observe(video);
+      video.play().catch(function() {});
+    });
+  }
+
   var studentsGrid = document.getElementById('studentsGrid');
   var searchInput = document.getElementById('searchInput');
   var filterTabs = document.getElementById('filterTabs');
@@ -175,10 +386,11 @@ document.addEventListener('DOMContentLoaded', function() {
       resultsCount.textContent = '';
       return;
     }
+    var displayedStudents = filtered.slice(0, STUDENT_DIRECTORY_LIMIT);
     noResults.style.display = 'none';
-    resultsCount.textContent = 'Showing ' + filtered.length + ' student' + (filtered.length > 1 ? 's' : '');
+    resultsCount.textContent = 'Showing ' + displayedStudents.length + ' student' + (displayedStudents.length > 1 ? 's' : '');
 
-    filtered.forEach(function(student) {
+    displayedStudents.forEach(function(student) {
       studentsGrid.appendChild(createStudentCard(student));
     });
 
